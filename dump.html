@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8">
+		<title>Dumping Nintendo 3DS System Files</title>
+		<meta name="supported-color-schemes" content="light dark">
+	</head>
+	<body>
+		<h1>Dumping Nintendo 3DS System Files</h1>
+
+		<h2>ARM9 BootROM &amp; OTP</h2>
+		<p>ARM9 BootROM contains various encryption keys. OTP is used for encryption of console-unique data, such as NAND partitions.</p>
+
+		<h3>Using boot9strap</h3>
+		<p>This is the default setup when using <a href="https://3ds.hacks.guide" target="_blank">3DS Hacks Guide</a>. This does not work when using boot9strap through ntrboot. If ntrboot is used, use the GodMode9 section below.</p>
+		<ol>
+			<li>While holding START + SELECT + X, press POWER.</li>
+			<li>Check for <code>/boot9strap</code> on the SD card. The files <code>boot9.bin</code> and <code>otp.bin</code> should be created inside.</li>
+		</ol>
+
+		<h3>Using fastboot3DS</h3>
+		<p>This requires fastboot3DS v1.1 or newer installed to FIRM.</p>
+		<ol>
+			<li>While holding HOME, press POWER to boot into the fastboot3DS menu.</li>
+			<li>Choose "Miscellaneous..." -&gt; "Dump bootroms &amp; OTP".</li>
+			<li>Check that all steps show "success", then press B to power off.</li>
+			<li>Check inside <code>/3ds</code> on the SD card. The files <code>boot9.bin</code> and <code>otp.bin</code> should be created.</li>
+		</ol>
+
+		<h3>Using GodMode9</h3>
+		<p>This requires GodMode9 v1.1.8 or newer, started through boot9strap.</p>
+		<ol>
+			<li>Start GodMode9.</li>
+			<li>Navigate to <code>[M:] MEMORY VIRTUAL</code>.</li>
+			<li>Press L on <code>boot9.bin</code> and <code>otp.mem</code> to select both.</li>
+			<li>Press A to select, then choose "Copy to 0:/gm9/out".</li>
+			<li>Turn off the system.</li>
+			<li>Check inside <code>/gm9/out</code> on the SD card. The files <code>boot9.bin</code> and <code>otp.mem</code> should be created.</li>
+		</ol>
+
+		<h2>movable.sed</h2>
+		<p><code>movable.sed</code> contains KeyY for SD data encryption for all files under <code>/Nintendo 3DS/&lt;id0&gt;/&lt;id1&gt;</code>. The file is located in CTRNAND at <code>/private/movable.sed</code>.</p>
+		<p>If you have an essentials backup (<code>essential.exefs</code>) created by GodMode9, the file is available inside as "<code>movable</code>".</code>
+
+		<h3>Using GodMode9</h3>
+		<p>The drive depends on the source. SysNAND is at <code>[1:] SYSNAND CTRNAND</code>. EmuNAND/RedNAND is at <code>[4:] EMUNAND CTRNAND</code>. A mounted NAND backup is at <code>[7:] IMGNAND CTRNAND</code>.</p>
+		<ol>
+			<li>Start GodMode9.</li>
+			<li>Navigate to the source drive -&gt; <code>private</code>.</li>
+			<li>Select <code>movable.sed</code>, then choose "Copy to 0:/gm9/out".</li>
+			<li>Turn off the system.</li>
+			<li>Check inside <code>/gm9/out</code> on the SD card. The file <code>movable.sed</code> should be created.</li>
+		</ol>
+	</body>
+</html>
