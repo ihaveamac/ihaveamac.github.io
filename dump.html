@@ -8,6 +8,8 @@
 	</head>
 	<body>
 		<h1>Dumping Nintendo 3DS System Files</h1>
+		
+		<hr>
 
 		<h2>ARM9 BootROM &amp; OTP</h2>
 		<p>ARM9 BootROM contains various encryption keys. OTP is used for encryption of console-unique data, such as NAND partitions.</p>
@@ -38,6 +40,8 @@
 			<li>Turn off the system.</li>
 			<li>Check inside <code>/gm9/out</code> on the SD card. The files <code>boot9.bin</code> and <code>otp.mem</code> should be created.</li>
 		</ol>
+		
+		<hr>
 
 		<h2>movable.sed</h2>
 		<p><code>movable.sed</code> contains KeyY for SD data encryption for all files under <code>/Nintendo 3DS/&lt;id0&gt;/&lt;id1&gt;</code>. The file is located in CTRNAND at <code>/private/movable.sed</code>.</p>
